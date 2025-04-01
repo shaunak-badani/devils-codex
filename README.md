@@ -1,6 +1,6 @@
-# Template project
+# Devil's codex
 
-> A template project with React & Vite as frontend and fastapi as backend.
+> A chatbot that helps answer questions regarding Duke curriculums and events.
 
 
 ### How to run
@@ -30,6 +30,6 @@ If you're deploying on vcm, change the vcm base url in `frontend/.env.production
 Commands to deploy:
 
 ```bash
-cd TemplateProject # You can rename this, just make sure the current directory has the docker compose file
+cd project-2-devils-codex
 sudo docker compose -f docker-compose.yml up --build -d
 ```
