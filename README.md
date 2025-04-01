@@ -1,2 +1,35 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/oqjgKq0J)
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=18950741)
+# Template project
+
+> A template project with React & Vite as frontend and fastapi as backend.
+
+
+### How to run
+
+- Frontend
+```
+cd frontend
+npm install
+npm run dev
+```
+- The application is then hosted on `localhost:5173`
+
+
+- Backend
+```
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+fastapi dev main.py
+```
+
+
+- Deployment
+
+If you're deploying on vcm, change the vcm base url in `frontend/.env.production`. You can change the link to the url / ip address of the server you are hosting it on, if using GCP or Azure for deployment.
+
+Commands to deploy:
+
+```bash
+cd TemplateProject # You can rename this, just make sure the current directory has the docker compose file
+sudo docker compose -f docker-compose.yml up --build -d
+```
