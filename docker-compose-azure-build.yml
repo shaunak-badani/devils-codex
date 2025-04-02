@@ -1,0 +1,16 @@
+services:
+  frontend:
+    container_name: frontend
+    image: ${ACR_NAME}.azurecr.io/${WEBAPP_NAME}-frontend
+    build:
+      context: ./frontend
+      args:
+        API_URL: https://${ACR_NAME}.azurewebsites.net
+    ports:
+      - "80:80"
+
+  backend:
+    container_name: backend
+    image: ${ACR_NAME}.azurecr.io/${WEBAPP_NAME}-backend
+    build:
+      context: ./backend
