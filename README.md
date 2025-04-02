@@ -96,7 +96,7 @@ sudo ACR_NAME=$ACR_NAME WEBAPP_NAME=$WEBAPP_NAME docker compose -f docker-compos
 8. Push the docker images to azure container registry. These commands need to be run **locally**, where you built the images:
 
 ```bash
-docker push ${ACR_NAME}.azurecr.io/${WEBAPP_NAME}-frontend
+docker push ${ACR_NAME}.azurecr.io/${WEBAPP_NAME}-frontend 
 docker push ${ACR_NAME}.azurecr.io/${WEBAPP_NAME}-backend
 ```
 
@@ -131,4 +131,3 @@ az webapp delete --name $WEBAPP_NAME --resource-group $RESOURCE_GROUP # Deletes 
 APP_SERVICE_PLAN=devils-plan
 az appservice plan delete --name $APP_SERVICE_PLAN --resource-group $RESOURCE_GROUP --yes
 ```
-
