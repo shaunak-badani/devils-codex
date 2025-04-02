@@ -102,12 +102,15 @@ docker push ${ACR_NAME}.azurecr.io/${WEBAPP_NAME}-backend
 
 9. Reset config of container, and restart the container:
 ```bash
+envsubst < docker-compose-azure-deploy.yml  > /tmp/docker-compose-azure-deploy.yml
 az webapp config container set \
   --name $WEBAPP_NAME \
   --resource-group $RESOURCE_GROUP \
   --container-registry-url https://$ACR_NAME.azurecr.io \
   --container-registry-user $USERNAME \
-  --container-registry-password $PASSWORD
+  --container-registry-password $PASSWORD \
+  --multicontainer-config-type compose \
+  --multicontainer-config-file /tmp/docker-compose-azure-deploy.yml # Changing dockerfile to one with substituted env variables
 az webapp restart --name $WEBAPP_NAME --resource-group $RESOURCE_GROUP
 ```
 

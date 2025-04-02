@@ -4,7 +4,7 @@ services:
     build:
       context: ./frontend
       args:
-        API_URL: http://vcm-45508.vm.duke.edu
+        API_URL: http://vcm-47087.vm.duke.edu
     ports:
       - "80:80"
 
