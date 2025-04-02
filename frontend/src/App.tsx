@@ -1,7 +1,6 @@
 import './App.css'
 import { Card } from "@/components/ui/card"
 import Chatbot from './chatbot/chatbot'
-import logo from "./assets/Duke_Official_Codex.png"
 
 function App() {
 

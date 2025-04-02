@@ -1,6 +1,8 @@
 # Use an official Node.js runtime as a parent image
 FROM node:20.17.0 AS development
 
+ARG API_URL
+RUN echo "Building with API URL: $API_URL"
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
