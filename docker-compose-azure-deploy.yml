@@ -1,10 +1,10 @@
 services:
   frontend:
     container_name: frontend
-    image: codexregistry.azurecr.io/templateproject-frontend:latest
+    image: ${ACR_NAME}.azurecr.io/${WEBAPP_NAME}-frontend
     ports:
       - "80:80"
 
   backend:
     container_name: backend
-    image: codexregistry.azurecr.io/templateproject-backend:latest
+    image: ${ACR_NAME}.azurecr.io/${WEBAPP_NAME}-backend
