@@ -65,6 +65,13 @@ class AIMEngTools:
 
         filtered_dicts = filter_keys(course_summary, imp_keys)
         return filtered_dicts
+    
+    @classmethod
+    def get_tool_map(cls):
+        TOOLS_MAP = {
+            "get_courses_list": cls.get_courses_list
+        }
+        return TOOLS_MAP
 
 
 

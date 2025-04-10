@@ -22,6 +22,13 @@ pip install -r requirements.txt
 fastapi dev main.py
 ```
 
+### Running tests:
+
+```bash
+cd devils-codex/agent
+PYTHONPATH=. pytest tests
+```
+
 ### Deployment
 
 #### VCM
