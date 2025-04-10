@@ -10,6 +10,9 @@ class Settings(BaseSettings):
     MODEL_NAME: str = os.getenv("MODEL_NAME", "gpt-4o-mini-2024-07-18")
     OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
 
+
+
+
 @lru_cache()
 def get_settings() -> Settings:
     return Settings()
