@@ -1,4 +1,5 @@
-
+import PromptIcon from "./prompt-icon";
+import blueDevilsIcon from "../assets/blue-devils-icon.png"
 
 const Messages = (props: any) => {
 
@@ -13,7 +14,9 @@ const Messages = (props: any) => {
                 
                 return (
                 <>
-                    <div className={`flex ${justifyEnd}`}>
+                    
+                    <div className={`flex ${justifyEnd} align-center`}>
+                        {!isUser && <PromptIcon image={blueDevilsIcon} />}
                         <div key={msg['text']} className={`text-xl ${bgColor} text-white
                      w-3/5 py-2 sm:py-2 rounded-sm my-3 sm:my-3`}>
                             <h1>{msg['text']}</h1>
