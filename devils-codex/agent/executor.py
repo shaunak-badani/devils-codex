@@ -1,9 +1,11 @@
 from tools.AIMengTools import AIMEngTools
+from tools.ProspectiveStudentsTool import ProspectiveStudentsTool
 
 class Executor:
 
     AVAILABLE_TOOLS = {
-        **AIMEngTools.get_tool_map()
+        **AIMEngTools.get_tool_map(),
+        **ProspectiveStudentsTool.get_tool_map()
     }
 
     @classmethod

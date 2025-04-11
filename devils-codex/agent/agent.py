@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 from tools.AIMengTools import AIMEngTools
+from tools.ProspectiveStudentsTool import ProspectiveStudentsTool
 import json
 from executor import Executor
 
@@ -13,6 +14,12 @@ class DukeAgent:
     def __init__(self):
         self.messages = []
 
+    def get_tools(self):
+        return [
+            *AIMEngTools.TOOLS_SCHEMA,
+            *ProspectiveStudentsTool.TOOLS_SCHEMA
+        ]
+
     def run(self, query):
         current_message = \
             {"role": "user", "content": query}
@@ -22,7 +29,7 @@ class DukeAgent:
             response = self.client.responses.create(
                 model="gpt-4o",
                 input=self.messages,
-                tools= AIMEngTools.TOOLS_SCHEMA,
+                tools= self.get_tools(),
                 tool_choice="auto"
             )
 
