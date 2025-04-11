@@ -60,7 +60,6 @@ class ProspectiveStudentsTool:
         questions = []
         for decorated_question in all_questions:
             questions.extend(list(decorated_question.stripped_strings))
-        print(questions)
         return questions
     
     @classmethod
@@ -76,12 +75,14 @@ class ProspectiveStudentsTool:
         page = urlopen(program_url).read()
         
         soup = BeautifulSoup(page, 'lxml')
-        headers = soup.find_all("h4")
-        question_index = faq_number - 1
-        if question_index >= len(headers):
+        div_block = soup.find(id="block-tts-sub-content")
+        all_questions = div_block.find("ul").find_all("li")
+        if faq_number >= len(all_questions):
             print(f"Cannot find faq number {faq_number}")
             return ""
-        next_sibling = headers[question_index].find_next_sibling()
+        question_number = all_questions[faq_number]
+        anchor_value = question_number.find("a").get("href").lstrip("#")
+        next_sibling = soup.find("a", attrs={"name": anchor_value}).parent.find_next_sibling("p")
         answer = ""
         while next_sibling and next_sibling.name == "p":
             answer += next_sibling.text
@@ -99,7 +100,7 @@ class ProspectiveStudentsTool:
 
 if __name__ == "__main__":
     # response = ProspectiveStudentsTool.get_list_faq(program = "ms")
-    response = ProspectiveStudentsTool.get_faq_answer(program = "phd", faq_number = 13)
+    response = ProspectiveStudentsTool.get_faq_answer(program = "phd", faq_number = 7)
     print(response)
         
 

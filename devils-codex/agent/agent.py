@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from tools.AIMengTools import AIMEngTools
 from tools.ProspectiveStudentsTool import ProspectiveStudentsTool
+from tools.EventTools import EventTools
 import json
 from executor import Executor
 
@@ -17,7 +18,8 @@ class DukeAgent:
     def get_tools(self):
         return [
             *AIMEngTools.TOOLS_SCHEMA,
-            *ProspectiveStudentsTool.TOOLS_SCHEMA
+            *ProspectiveStudentsTool.TOOLS_SCHEMA,
+            *EventTools.TOOLS_SCHEMA
         ]
 
     def run(self, query):
