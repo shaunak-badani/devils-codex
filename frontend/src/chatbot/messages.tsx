@@ -9,11 +9,12 @@ const Messages = (props: any) => {
             {messages.map((msg: any) => {
                 const isUser = msg['sender'] === "user";
                 const justifyEnd = isUser ? "justify-end" : "";
-                const bgColor = isUser? "#00539B" : "#988675";
+                const bgColor = isUser? "bg-[#00539B]" : "bg-[#988675]";
+                
                 return (
                 <>
                     <div className={`flex ${justifyEnd}`}>
-                        <div key={msg['text']} className={`text-xl bg-[${bgColor}] text-white
+                        <div key={msg['text']} className={`text-xl ${bgColor} text-white
                      w-3/5 py-2 sm:py-2 rounded-sm my-3 sm:my-3`}>
                             <h1>{msg['text']}</h1>
                         </div>
