@@ -8,4 +8,5 @@ class Executor:
 
     @classmethod
     def execute_tool(cls, name, args):
-        return cls.AVAILABLE_TOOLS.get(name)(*args)
+        print("Args : ", args)
+        return cls.AVAILABLE_TOOLS.get(name)(**args)

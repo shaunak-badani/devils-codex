@@ -9,18 +9,52 @@ class AIMEngTools:
     __course_name = "AIPI - AI for Product Innovation"
     __encoded_course_name = urllib.parse.quote(__course_name)
     __params = {"access_token": os.environ.get("DUKE_API_KEY")}
-    base_url = f"https://streamer.oit.duke.edu/curriculum/courses/subject/{__encoded_course_name}"
+    courses_url = f"https://streamer.oit.duke.edu/curriculum/courses/subject/{__encoded_course_name}"
+    course_details_url = f"https://streamer.oit.duke.edu/curriculum/classes/strm"
 
-    TOOLS_SCHEMA = [{
-        "type": "function",
-        "name": "get_courses_list",
-        "description": "Gets the list of courses for the AI MEng program",
-        "parameters": {}
-    }]
+    ALLOWED_STRM_VALUES = ["1940 - 2025 Fall Term", "1930 - 2025 Summer Term 2", "1925 - 2025 Summer Term 1", "1910 - 2025 Spring Term"]
+    
+    TOOLS_SCHEMA = [
+        {
+            "type": "function",
+            "name": "get_courses_list",
+            "description": "Gets the list of courses and details in the format \{ 'crse_id', 'crse_offer_nbr', 'course_title_long', 'fall_and_or_spring' \} for the AI MEng program",
+            "parameters": {}
+        }, 
+        {
+            "type": "function",
+            "name": "get_course_details",
+            "description": "Retrieves course details and instructor(s) for a given course.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "strm": {
+                        "type": "string",
+                        "enum": ALLOWED_STRM_VALUES,
+                        "description": f"The term in question : Fall, Spring, Summer 1 or Summer 2"
+                    },
+                    "crse_id": {
+                        "type": "string",
+                        "description": "Units the temperature will be returned in."
+                    },
+                    "crse_offer_nbr": {
+                        "type": "string",
+                        "description": "Course offering nbr of the course"
+                    }
+                },
+                "required": [
+                    "strm",
+                    "crse_id",
+                    "crse_offer_nbr"
+                ],
+                "additionalProperties": False
+            },
+            "strict": True
+        }]
 
     @classmethod
     def get_courses_list(cls):
-        response = requests.get(cls.base_url, params = cls.__params)
+        response = requests.get(cls.courses_url, params = cls.__params)
         json_output = response.json()
 
         course_summary = json_output \
@@ -61,20 +95,64 @@ class AIMEngTools:
             return filtered_dicts
 
 
-        imp_keys = {"crse_id", "course_title_long"}
+        imp_keys = {"crse_id", "course_title_long", "crse_offer_nbr", "ssr_crse_typoff_cd_lov_descr"}
 
         filtered_dicts = filter_keys(course_summary, imp_keys)
         return filtered_dicts
     
     @classmethod
+    def get_course_details(cls, *, strm, crse_id, crse_offer_nbr):
+        if strm not in cls.ALLOWED_STRM_VALUES:
+            print(f"Strm : {strm} is not supported!")
+            return []
+        encoded_strm = urllib.parse.quote(strm)
+        base_url = cls.course_details_url + f"/{encoded_strm}/crse_id/{crse_id}"
+        total_params = {**cls.__params, "crse_offer_nbr": crse_offer_nbr}
+        response = requests.get(base_url, params = total_params)
+        json_output = response.json()
+        class_description = json_output \
+            .get("ssr_get_classes_resp", {}) \
+            .get("search_result", {}) \
+            .get("subjects", {}) \
+            .get("subject", {}) \
+            .get("classes_summary", {}) \
+            .get("class_summary", {}) \
+            .get("ssr_descrlong")
+        course_instructors = json_output \
+            .get("ssr_get_classes_resp", {}) \
+            .get("search_result", {}) \
+            .get("subjects", {}) \
+            .get("subject", {}) \
+            .get("classes_summary", {}) \
+            .get("class_summary", {}) \
+            .get("classes_meeting_patterns", {}) \
+            .get("class_meeting_pattern", {}) \
+            .get("class_instructors", {})
+        
+        instructors = []
+        for v in course_instructors.values():
+            instructors.append(v.get("name_display"))
+        
+        return {"Class description": class_description, "Instructors": instructors}
+
+
+    
+    @classmethod
     def get_tool_map(cls):
         TOOLS_MAP = {
-            "get_courses_list": cls.get_courses_list
+            "get_courses_list": cls.get_courses_list,
+            "get_course_details": cls.get_course_details
         }
         return TOOLS_MAP
 
 
 
 if __name__ == "__main__":
-    response = AIMEngTools.get_courses_list()
+    # response = AIMEngTools.get_courses_list()
+    args = {
+        "strm": "1940 - 2025 Fall Term",
+        "crse_id": "027039",
+        "crse_offer_nbr": "1"
+    }
+    response = AIMEngTools.get_course_details(**args)
     print(response)

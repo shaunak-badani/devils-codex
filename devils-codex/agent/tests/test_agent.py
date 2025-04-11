@@ -15,3 +15,12 @@ def test_get_courses_list():
 
     for COURSE in EXPECTED_COURSES:
         assert COURSE in response
+
+
+def test_course_information():
+    query = "Who is the instructor for Modeling Processes and Algorithms"
+    response = agent.run(query)
+
+    EXPECTED_INSTRUCTOR = "Jon J Reifschneider"
+
+    assert EXPECTED_INSTRUCTOR in response
