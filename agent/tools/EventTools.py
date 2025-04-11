@@ -42,14 +42,15 @@ class EventTools:
     }]
 
     @classmethod
-    def get_events(cls, *, categories, future_days, local):
+    def get_events(cls, *, categories = None, future_days, local):
         params = {
-            "cfu[]": categories,
             "future_days": future_days,
             "feed_type": "simple"
         }
         if local:
             params["local"] = "true"
+        if categories is not None:
+            params["cfu[]"] = categories
         response = requests.get(cls.base_url, params = params)
         json_output = response.json()
         events = []
