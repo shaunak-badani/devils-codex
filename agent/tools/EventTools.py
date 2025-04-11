@@ -37,7 +37,11 @@ class EventTools:
                     "type": "boolean",
                     "description": "Whether to restrict events to local or not."
                 }
-            }
+            },
+            "required": [
+                "future_days",
+                "local"
+            ],
         }
     }]
 
