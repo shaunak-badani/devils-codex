@@ -33,5 +33,5 @@ def query_mean_model(query: str):
     Passes the query to the agent and returns the response
     """
     agent = DukeAgent()
-    # answer = agent.run(query)
-    return {"answer": "Work in progress"}
+    answer = agent.run(query)
+    return {"answer": answer}

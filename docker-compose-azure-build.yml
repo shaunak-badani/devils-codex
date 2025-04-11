@@ -13,4 +13,5 @@ services:
     container_name: backend
     image: ${ACR_NAME}.azurecr.io/${WEBAPP_NAME}-backend
     build:
-      context: ./backend
+      context: .
+      dockerfile: backend/Dockerfile
