@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
+import ssl
 
 
 load_dotenv()
@@ -53,7 +54,8 @@ class ProspectiveStudentsTool:
             return []
         program_url = cls.FAQ_PAGE.format(program = program)
 
-        page = urlopen(program_url).read()
+        context = ssl._create_unverified_context()
+        page = urlopen(program_url, context = context).read()
         soup = BeautifulSoup(page, 'lxml')
         div_block = soup.find(id="block-tts-sub-content")
         all_questions = div_block.find("ul").find_all("li")
@@ -72,7 +74,9 @@ class ProspectiveStudentsTool:
             return []
         program_url = cls.FAQ_PAGE.format(program = program)
 
-        page = urlopen(program_url).read()
+        
+        context = ssl._create_unverified_context()
+        page = urlopen(program_url, context = context).read()
         
         soup = BeautifulSoup(page, 'lxml')
         div_block = soup.find(id="block-tts-sub-content")
