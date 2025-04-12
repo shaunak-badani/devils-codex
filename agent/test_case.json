@@ -1,0 +1,135 @@
+[
+    {
+      "query": "What are the core courses of the AI MEng program?",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["core", "course", "curriculum", "AI MEng"],
+      "evaluation_focus": ["Tool routing", "Factual accuracy"]
+    },
+    {
+      "query": "Is the AI MEng program STEM-designated?",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["STEM", "designation", "visa"],
+      "evaluation_focus": ["Factual correctness", "Concise answer"]
+    },
+    {
+      "query": "Can you tell me the application deadlines for the AI MEng program?",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["deadline", "application", "January", "rolling"],
+      "evaluation_focus": ["Tool call", "Date extraction"]
+    },
+    {
+      "query": "Tell me about housing options near Duke for graduate students.",
+      "expected_tool": "ProspectiveStudentsTool",
+      "expected_info_keywords": ["housing", "on-campus", "off-campus", "graduate"],
+      "evaluation_focus": ["Relevance", "Content completeness"]
+    },
+    {
+      "query": "How safe is Duke campus?",
+      "expected_tool": "ProspectiveStudentsTool",
+      "expected_info_keywords": ["safety", "campus", "security"],
+      "evaluation_focus": ["Contextual grounding"]
+    },
+    {
+      "query": "Are there any events at Duke on April 15?",
+      "expected_tool": "EventTools",
+      "expected_info_keywords": ["April 15", "event", "time"],
+      "evaluation_focus": ["Date parsing", "Tool routing"]
+    },
+    {
+      "query": "What are some upcoming career fairs?",
+      "expected_tool": "EventTools",
+      "expected_info_keywords": ["career", "fair", "event"],
+      "evaluation_focus": ["Keyword trigger", "Context understanding"]
+    },
+    {
+      "query": "Is there anything interesting happening on campus next week?",
+      "expected_tool": "EventTools",
+      "expected_info_keywords": ["event", "next week"],
+      "evaluation_focus": ["Temporal reasoning"]
+    },
+    {
+      "query": "I want to apply to the AI MEng program. Are there any info sessions coming up?",
+      "expected_tool": ["AIMEngTools", "EventTools"],
+      "expected_info_keywords": ["info session", "AI MEng", "event"],
+      "evaluation_focus": ["Multi-tool routing"]
+    },
+    {
+      "query": "Does Duke's AI MEng program help with job placement? Are there any career fairs this semester?",
+      "expected_tool": ["AIMEngTools", "EventTools"],
+      "expected_info_keywords": ["career", "job placement", "event"],
+      "evaluation_focus": ["Tool chaining", "Context separation"]
+    },
+    {
+      "query": "If I'm interested in AI MEng and I live off-campus, what should I know?",
+      "expected_tool": ["AIMEngTools", "ProspectiveStudentsTool"],
+      "expected_info_keywords": ["housing", "AI MEng", "off-campus"],
+      "evaluation_focus": ["User context routing"]
+    },
+    {
+      "query": "Tell me about Duke's basketball team",
+      "expected_tool": null,
+      "expected_info_keywords": ["unavailable", "not supported"],
+      "evaluation_focus": ["Out-of-scope handling"]
+    },
+    {
+      "query": "What are the tuition fees for Yale's CS program?",
+      "expected_tool": null,
+      "expected_info_keywords": ["Duke", "only", "not Yale"],
+      "evaluation_focus": ["Domain boundary enforcement"]
+    },
+    {
+      "query": "Can you book a hotel near Duke for me?",
+      "expected_tool": null,
+      "expected_info_keywords": ["not supported", "travel", "external"],
+      "evaluation_focus": ["Tool limitation handling"]
+    },
+    {
+      "query": "What support is there for international students in the AI MEng program?",
+      "expected_tool": ["AIMEngTools", "ProspectiveStudentsTool"],
+      "expected_info_keywords": ["international", "visa", "support"],
+      "evaluation_focus": ["Inference", "Sensitive topic"]
+    },
+    {
+      "query": "I'm free next Friday evening — any music events at Duke then?",
+      "expected_tool": "EventTools",
+      "expected_info_keywords": ["Friday", "music", "event"],
+      "evaluation_focus": ["Temporal + Category reasoning"]
+    },
+    {
+      "query": "Any events happening near the Duke Chapel this weekend?",
+      "expected_tool": "EventTools",
+      "expected_info_keywords": ["Duke Chapel", "event", "location"],
+      "evaluation_focus": ["Location-based filtering"]
+    },
+    {
+      "query": "Can you list academic events happening in April?",
+      "expected_tool": "EventTools",
+      "expected_info_keywords": ["academic", "April", "event"],
+      "evaluation_focus": ["Date range + category parsing"]
+    },
+    {
+      "query": "Any entrepreneurship events for grad students next week?",
+      "expected_tool": "EventTools",
+      "expected_info_keywords": ["entrepreneurship", "graduate", "event"],
+      "evaluation_focus": ["Entity and audience filtering"]
+    },
+    {
+      "query": "I'm interested in the AI MEng program — what can you tell me?",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["overview", "program", "AI MEng"],
+      "evaluation_focus": ["Salutation", "Friendly tone"]
+    },
+    {
+      "query": "Can you remind me of the application requirements again?",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["application", "requirement", "deadline"],
+      "evaluation_focus": ["Follow-up continuity"]
+    },
+    {
+      "query": "What’s the cost of living in Durham like?",
+      "expected_tool": "ProspectiveStudentsTool",
+      "expected_info_keywords": ["cost of living", "Durham", "housing"],
+      "evaluation_focus": ["Follow-up tracking"]
+    }
+  ]
+  
