@@ -21,7 +21,7 @@ class ProspectiveStudentsTool:
                     "program": {
                         "type": "string",
                         "enum": ALLOWED_PROGRAM_VALUES,
-                        "description": f"The program the prospective student is in : ms or phd"
+                        "description": f"The program the prospective student is in : ms or phd."
                     }
                 },
             }
@@ -40,7 +40,7 @@ class ProspectiveStudentsTool:
                     },
                     "faq_number": {
                         "type": "integer",
-                        "description": f"The number of the faq program in the list."
+                        "description": f"The number of the faq program in the list. Assumes 0-based indexing."
                     }
                 },
             }

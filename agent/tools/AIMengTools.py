@@ -3,8 +3,9 @@ from dotenv import load_dotenv
 import urllib.parse
 import requests
 import os
-load_dotenv()
+from bs4 import BeautifulSoup
 
+load_dotenv()
 class AIMEngTools:
     __course_name = "AIPI - AI for Product Innovation"
     __encoded_course_name = urllib.parse.quote(__course_name)
@@ -50,7 +51,14 @@ class AIMEngTools:
                 "additionalProperties": False
             },
             "strict": True
-        }]
+        },
+        {
+            "type": "function",
+            "name": "get_degree_details",
+            "description": "Gets degree details for the AI MEng program. Includes details about 12, 16 month plans, 4+1 BSE, and MD + MEng dual degree",
+            "parameters": {}
+        }
+        ]
 
     @classmethod
     def get_courses_list(cls):
@@ -135,13 +143,24 @@ class AIMEngTools:
         
         return {"Class description": class_description, "Instructors": instructors}
 
+    degree_details_url = "https://masters.pratt.duke.edu/ai/degree"
+
+    @classmethod
+    def get_degree_details(cls):
+        response = requests.get(cls.degree_details_url)
+        soup = BeautifulSoup(response.text, 'lxml')
+        subpage = soup.find("h2", id="h-flexibility-and-options").find_parent("section")
+        subpage_text = subpage.text.strip()
+        return subpage_text
+
 
     
     @classmethod
     def get_tool_map(cls):
         TOOLS_MAP = {
             "get_courses_list": cls.get_courses_list,
-            "get_course_details": cls.get_course_details
+            "get_course_details": cls.get_course_details,
+            "get_degree_details": cls.get_degree_details
         }
         return TOOLS_MAP
 
@@ -154,5 +173,6 @@ if __name__ == "__main__":
         "crse_id": "027039",
         "crse_offer_nbr": "1"
     }
-    response = AIMEngTools.get_course_details(**args)
-    print(response)
+    # response = AIMEngTools.get_course_details(**args)
+    response = AIMEngTools.get_degree_details()
+    print("Response obtained :", response)
