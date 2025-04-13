@@ -12,38 +12,16 @@ class ProspectiveStudentsTool:
     TOOLS_SCHEMA = [
         {
             "type": "function",
-            "name": "get_list_faq",
-            "description": "Gets the list of frequently asked questions for prospective MS or PHD Duke Students",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "program": {
-                        "type": "string",
-                        "enum": ALLOWED_PROGRAM_VALUES,
-                        "description": f"The program the prospective student is in : ms or phd."
-                    }
-                },
-            }
+            "name": "get_tuition_fee",
+            "description": "Get's details about the ESTIMATED tuition fee for the AI Meng Program.",
+            "parameters": {}
         },
         {
             "type": "function",
-            "name": "get_faq_answer",
-            "description": "Gets the answer to the nth FAQ for prospective MS or PHD Duke Students",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "program": {
-                        "type": "string",
-                        "enum": ALLOWED_PROGRAM_VALUES,
-                        "description": f"The program the prospective student is in : ms or phd"
-                    },
-                    "faq_number": {
-                        "type": "integer",
-                        "description": f"The number of the faq program in the list. Assumes 0-based indexing."
-                    }
-                },
-            }
-        },
+            "name": "get_application_requirements",
+            "description": "Get details about the documents and exams required for applying to Master of Engineering programs.",
+            "parameters": {}
+        }
     ]
 
     @classmethod
@@ -91,19 +69,45 @@ class ProspectiveStudentsTool:
             answer += next_sibling.text
             next_sibling = next_sibling.find_next_sibling()
         return answer
+    
+    tuition_url = "https://masters.pratt.duke.edu/admissions/tuition-financial-aid/"
+    @classmethod
+    def get_tuition_fee(cls):
+        context = ssl._create_unverified_context()
+        page = urlopen(cls.tuition_url, context = context).read()
+        
+        soup = BeautifulSoup(page, 'lxml')
+        table = soup.find("h3", string="Artificial Intelligence Master of Engineering").find_next("table")
+        return table
 
     
     @classmethod
     def get_tool_map(cls):
         TOOLS_MAP = {
-            "get_list_faq": cls.get_list_faq,
-            "get_faq_answer": cls.get_faq_answer
+            "get_tuition_fee": cls.get_tuition_fee,
+            "get_application_requirements": cls.get_application_requirements
         }
         return TOOLS_MAP
+    
+    application_requirements_url = "https://masters.pratt.duke.edu/apply/instructions/"
+    @classmethod
+    def get_application_requirements(cls):
+        context = ssl._create_unverified_context()
+        page = urlopen(cls.application_requirements_url, context = context).read()
+        
+        soup = BeautifulSoup(page, 'lxml')
+        information = soup.find("h2", string="Master of Engineering Programs").find_parent("section").text
+        return information.strip()
+    
+    
+
+
 
 if __name__ == "__main__":
     # response = ProspectiveStudentsTool.get_list_faq(program = "ms")
-    response = ProspectiveStudentsTool.get_faq_answer(program = "phd", faq_number = 7)
+    # response = ProspectiveStudentsTool.get_faq_answer(program = "phd", faq_number = 7)
+    # response = ProspectiveStudentsTool.get_tuition_fee()
+    response = ProspectiveStudentsTool.get_application_requirements()
     print(response)
         
 

@@ -1,11 +1,12 @@
 import os
 from dotenv import load_dotenv
-from openai import OpenAI
+from openai import OpenAI, RateLimitError
 from tools.AIMengTools import AIMEngTools
 from tools.ProspectiveStudentsTool import ProspectiveStudentsTool
 from tools.EventTools import EventTools
 import json
 from executor import Executor
+import time
 
 
 class DukeAgent:
@@ -26,20 +27,28 @@ class DukeAgent:
         current_message = \
             {"role": "user", "content": query}
         self.messages.append(current_message)
-
+        start = time.time()
         while True:
-            response = self.client.responses.create(
-                model="gpt-4o",
-                input=self.messages,
-                tools= self.get_tools(),
-                tool_choice="auto"
-            )
+            try:
+                response = self.client.responses.create(
+                    model="gpt-4o-mini",
+                    input=self.messages,
+                    tools=self.get_tools(),
+                    tool_choice="auto"
+                )
+            except RateLimitError:
+                raise RuntimeError("Cannot run the query due to rate limits. Please wait for a few seconds and try again later.")
+
 
             output = response.output[0]
 
             if output.type == "message":
-                return output.content[0].text
-
+                end = time.time()
+                total_time = end - start
+                return {
+                    "time": f"{total_time:.6f} s",
+                    "answer": output.content[0].text
+                }
             print("Output :", output)
             self.messages.append(output)  # Add LLM tool_call message
             name = output.name

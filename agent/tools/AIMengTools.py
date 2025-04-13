@@ -14,39 +14,30 @@ class AIMEngTools:
     course_details_url = f"https://streamer.oit.duke.edu/curriculum/classes/strm"
 
     ALLOWED_STRM_VALUES = ["1940 - 2025 Fall Term", "1930 - 2025 Summer Term 2", "1925 - 2025 Summer Term 1", "1910 - 2025 Spring Term"]
-    
+    ALLOWED_COURSE_VALUES = []
+
     TOOLS_SCHEMA = [
         {
             "type": "function",
-            "name": "get_courses_list",
-            "description": "Gets the list of courses and details in the format \{ 'crse_id', 'crse_offer_nbr', 'course_title_long', 'fall_and_or_spring' \} for the AI MEng program",
+            "name": "get_courses_list_alternate",
+            "description": "Alternate API to get the list of courses for the AI MEng program. Only returns headers",
             "parameters": {}
-        }, 
+        },
         {
             "type": "function",
-            "name": "get_course_details",
-            "description": "Retrieves course details and instructor(s) for a given course.",
+            "name": "get_course_details_alternate",
+            "description": "Fallback fn to get course details. get_courses_list_alternate must be called first",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "strm": {
+                    "course_name": {
                         "type": "string",
-                        "enum": ALLOWED_STRM_VALUES,
-                        "description": f"The term in question : Fall, Spring, Summer 1 or Summer 2"
-                    },
-                    "crse_id": {
-                        "type": "string",
-                        "description": "Units the temperature will be returned in."
-                    },
-                    "crse_offer_nbr": {
-                        "type": "string",
-                        "description": "Course offering nbr of the course"
+                        "enum": ALLOWED_COURSE_VALUES,
+                        "description": f"Course name obtained. Must be one from course_list_alternate function"
                     }
                 },
                 "required": [
-                    "strm",
-                    "crse_id",
-                    "crse_offer_nbr"
+                    "course_name"
                 ],
                 "additionalProperties": False
             },
@@ -57,7 +48,7 @@ class AIMEngTools:
             "name": "get_degree_details",
             "description": "Gets degree details for the AI MEng program. Includes details about 12, 16 month plans, 4+1 BSE, and MD + MEng dual degree",
             "parameters": {}
-        }
+        },
         ]
 
     @classmethod
@@ -124,23 +115,47 @@ class AIMEngTools:
             .get("subjects", {}) \
             .get("subject", {}) \
             .get("classes_summary", {}) \
-            .get("class_summary", {}) \
-            .get("ssr_descrlong")
+            .get("class_summary", {})
+        
+        if isinstance(class_description, dict):
+            class_description = class_description.get("ssr_descrlong", " ")
+        elif isinstance(class_description, list):
+            descriptions = set()
+            for cls_descr in class_description:
+                descriptions.add(cls_descr.get("ssr_descrlong", " "))
+            class_description = " ".join(descriptions)
+        else:
+            raise TypeError("Unknown type of class description!")
+
         course_instructors = json_output \
             .get("ssr_get_classes_resp", {}) \
             .get("search_result", {}) \
             .get("subjects", {}) \
             .get("subject", {}) \
             .get("classes_summary", {}) \
-            .get("class_summary", {}) \
-            .get("classes_meeting_patterns", {}) \
-            .get("class_meeting_pattern", {}) \
-            .get("class_instructors", {})
-        
-        instructors = []
-        for v in course_instructors.values():
-            instructors.append(v.get("name_display"))
-        
+            .get("class_summary", {}) 
+        if isinstance(course_instructors, dict):
+            course_instructors = course_instructors \
+                .get("classes_meeting_patterns", {}) \
+                .get("class_meeting_pattern", {}) \
+                .get("class_instructors", {})
+            
+            instructors = []
+            for v in course_instructors.values():
+                instructors.append(v.get("name_display"))
+        elif isinstance(course_instructors, list):
+            instructors = set()
+            for instr in course_instructors:
+                cls_instructors = instr \
+                            .get("classes_meeting_patterns", {}) \
+                            .get("class_meeting_pattern", {}) \
+                            .get("class_instructors", {})
+                for v in cls_instructors.values():
+                    instructors.add(v.get("name_display"))
+                    
+            instructors = list(instructors)
+        else:
+            raise TypeError("Unknown type of class description!")
         return {"Class description": class_description, "Instructors": instructors}
 
     degree_details_url = "https://masters.pratt.duke.edu/ai/degree"
@@ -152,27 +167,54 @@ class AIMEngTools:
         subpage = soup.find("h2", id="h-flexibility-and-options").find_parent("section")
         subpage_text = subpage.text.strip()
         return subpage_text
-
-
     
+    course_list_alternate_url = "https://masters.pratt.duke.edu/ai/courses/"
+    
+    
+    @classmethod
+    def get_courses_list_alternate(cls):
+        """
+        Fallback fn to get list of courses if not available in previous list of events
+        """
+        response = requests.get(cls.course_list_alternate_url)
+        soup = BeautifulSoup(response.text, 'lxml')
+        headers = soup.find_all('h3', class_ ="title--small")
+        courses = [header.text for header in headers]
+        cls.ALLOWED_COURSE_VALUES = courses
+        return courses
+    
+    @classmethod
+    def get_course_details_alternate(cls, course_name):
+        """
+        Fallback fn to get course details. get_courses_list_alternate must be called first
+        """
+        if course_name not in cls.ALLOWED_COURSE_VALUES:
+            print(f"Course {course_name} not allowed!")
+            return " "
+        response = requests.get(cls.course_list_alternate_url)
+        soup = BeautifulSoup(response.text, 'lxml')
+        target = soup.find('h3', string = course_name)
+        return target.find_parent("li").text.strip()
+
     @classmethod
     def get_tool_map(cls):
         TOOLS_MAP = {
             "get_courses_list": cls.get_courses_list,
             "get_course_details": cls.get_course_details,
-            "get_degree_details": cls.get_degree_details
+            "get_degree_details": cls.get_degree_details,
+            "get_courses_list_alternate": cls.get_courses_list_alternate,
+            "get_course_details_alternate": cls.get_course_details_alternate
         }
         return TOOLS_MAP
-
-
 
 if __name__ == "__main__":
     # response = AIMEngTools.get_courses_list()
     args = {
-        "strm": "1940 - 2025 Fall Term",
-        "crse_id": "027039",
-        "crse_offer_nbr": "1"
+        "strm":"1940 - 2025 Fall Term",
+        "crse_id":"027038",
+        "crse_offer_nbr":"1"
     }
     # response = AIMEngTools.get_course_details(**args)
-    response = AIMEngTools.get_degree_details()
+    response = AIMEngTools.get_courses_list_alternate()
+    response = AIMEngTools.get_course_details_alternate("AIPI 520: Modeling Process & Algorithms")
     print("Response obtained :", response)
