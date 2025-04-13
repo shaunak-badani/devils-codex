@@ -114,3 +114,80 @@ Traceback (most recent call last):
 openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VqXbGtlc3KnF4Wudd0mmguUs on requests per min (RPM): Limit 3, Used 3, Requested 1. Please try again in 20s. Visit https://platform.openai.com/account/rate-limits to learn more. You can increase your rate limit by adding a payment method to your account at https://platform.openai.com/account/billing.', 'type': 'requests', 'param': None, 'code': 'rate_limit_exceeded'}}
 
 
+===========================
+
+You: Can you remind me of the AIPI MEng application requirements?
+Output : ResponseFunctionToolCall(arguments='{}', call_id='call_z9VqueZxufiiOJyTvlDhsJ2i', name='get_degree_details', type='function_call', id='fc_67fb24a0a9cc8191980f405213ffc5fa0cdef844b49c56e5', status='completed')
+Args :  {}
+Result :  Flexibility and Options
+12 or 16 month on-campus or 24 months online
+Innovative and immersive, you can complete this Duke master’s degree in 12 or 16 months on-campus, or online part-time in just 24 months.
+12-Month Accelerated Option
+Significantly more affordable than a traditional master’s program—in this option, pay tuition for only two (2) full semesters plus three (3) summer session credits.
+16-Month Standard Track
+Pursue this degree over three (3) full semesters plus the summer session—allowing you time to take additional electives and specialize. Students pursuing this path may take a partial or whole load of courses during their final semester.
+4+1: BSE + Master’s Option for Duke Undergraduates
+Duke undergraduate students can complete undergrad and this master’s degree in just five (5) years.
+Scholarship opportunity: The AI 4+1 BSE+Master’s scholarship covers 20 percent of the costs. Eligibility and other conditions apply.
+MD + MEng in Artificial Intelligence Dual Degree
+Medical students at Duke can complete this degree during their third year. See School of Medicine bulletin for details.
+Scholarship opportunity: The MD+MEng AI scholarship covers 20 percent of the costs. Eligibility and other conditions apply.
+Agent: For the AIPI MEng program, here are some key options and details:
+
+1. **Duration and Flexibility**:
+   - **12-Month Accelerated Option**: Complete in 12 months on-campus with tuition for two full semesters plus three summer session credits.
+   - **16-Month Standard Track**: Over three full semesters plus a summer session, allowing for additional electives and specializations.
+   - **Part-Time Online Option**: Finish in 24 months.
+
+2. **4+1: BSE + Master’s Option**:
+   - Duke undergraduates can complete both degrees in five years.
+   - **Scholarship**: AI 4+1 BSE+Master’s scholarship covers 20% of costs.
+
+3. **MD + MEng AI Dual Degree**:
+   - Medical students can complete this during their third year.
+   - **Scholarship**: Covers 20% of costs.
+
+If you need specific application requirements like test scores, prerequisites, or other documentation, please let me know!
+===============================
+You: Who teaches AIPI 510 in Fall 2025?
+Output : ResponseFunctionToolCall(arguments='{"strm":"1940 - 2025 Fall Term","crse_id":"027041","crse_offer_nbr":"1"}', call_id='call_mi4WsGzIWixLbmOTP76Xc8wC', name='get_course_details', type='function_call', id='fc_67fb25ac89b481919fbf9dad6efd239d0cdef844b49c56e5', status='completed')
+Args :  {'strm': '1940 - 2025 Fall Term', 'crse_id': '027041', 'crse_offer_nbr': '1'}
+Traceback (most recent call last):
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/agent.py", line 63, in <module>
+    response = agent.run(query)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/agent.py", line 47, in run
+    result = Executor.execute_tool(name, args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/executor.py", line 16, in execute_tool
+    return cls.AVAILABLE_TOOLS.get(name)(**args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/tools/AIMengTools.py", line 125, in get_course_details
+    .get("subject", {}) \
+     ^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+
+===========================================
+
+You: What prerequisites are needed for AIPI 590?
+Output : ResponseFunctionToolCall(arguments='{}', call_id='call_DH5gUIj50OJoMaYyoNGHV1Hm', name='get_courses_list', type='function_call', id='fc_67fb25e28320819186f784673e2e481604745e6c3c55c268', status='completed')
+Args :  {}
+Result :  [{'crse_id': '027568', 'ssr_crse_typoff_cd_lov_descr': 'Fall and/or Spring', 'course_title_long': 'AIPI Seminar', 'crse_offer_nbr': '1'}, {'crse_id': '027569', 'ssr_crse_typoff_cd_lov_descr': 'Fall and/or Spring', 'course_title_long': 'AIPI Workshops', 'crse_offer_nbr': '1'}, {'crse_id': '027560', 'ssr_crse_typoff_cd_lov_descr': 'Occasionally', 'course_title_long': 'Python Bootcamp', 'crse_offer_nbr': '1'}, {'crse_id': '027566', 'ssr_crse_typoff_cd_lov_descr': 'Fall Only', 'course_title_long': 'Introductory Residency', 'crse_offer_nbr': '1'}, {'crse_id': '027565', 'ssr_crse_typoff_cd_lov_descr': None, 'course_title_long': 'Mid-Program Residency', 'crse_offer_nbr': '1'}, {'crse_id': '027564', 'ssr_crse_typoff_cd_lov_descr': 'Occasionally', 'course_title_long': 'Concluding Residency', 'crse_offer_nbr': '1'}, {'crse_id': '027038', 'ssr_crse_typoff_cd_lov_descr': 'Fall Only', 'course_title_long': 'Sourcing Data for Analytics', 'crse_offer_nbr': '1'}, {'crse_id': '027039', 'ssr_crse_typoff_cd_lov_descr': 'Fall and/or Spring', 'course_title_long': 'Modeling Process and Algorithms', 'crse_offer_nbr': '1'}, {'crse_id': '027040', 'ssr_crse_typoff_cd_lov_descr': 'Fall Only', 'course_title_long': 'Optimization in Practice', 'crse_offer_nbr': '1'}, {'crse_id': '028750', 'ssr_crse_typoff_cd_lov_descr': 'Fall Only', 'course_title_long': 'Deep Reinforcement Learning Applications', 'crse_offer_nbr': '1'}, {'crse_id': '027041', 'ssr_crse_typoff_cd_lov_descr': 'Spring Only', 'course_title_long': 'Deep Learning Applications', 'crse_offer_nbr': '1'}, {'crse_id': '027563', 'ssr_crse_typoff_cd_lov_descr': 'Spring Only', 'course_title_long': 'Capstone Practicum 1', 'crse_offer_nbr': '1'}, {'crse_id': '027042', 'ssr_crse_typoff_cd_lov_descr': 'Summer Only', 'course_title_long': 'Legal, Societal, and Ethical Implications of AI', 'crse_offer_nbr': '1'}, {'crse_id': '027042', 'ssr_crse_typoff_cd_lov_descr': 'Summer Only', 'course_title_long': 'Legal, Societal, and Ethical Implications of AI', 'crse_offer_nbr': '1'}, {'crse_id': '027043', 'ssr_crse_typoff_cd_lov_descr': 'Summer Only', 'course_title_long': 'Operationalizing AI', 'crse_offer_nbr': '1'}, {'crse_id': '027570', 'ssr_crse_typoff_cd_lov_descr': 'Fall and/or Spring', 'course_title_long': 'Advanced Topics in AI for Product Innovation', 'crse_offer_nbr': '1'}, {'crse_id': '027571', 'ssr_crse_typoff_cd_lov_descr': 'Fall and/or Spring', 'course_title_long': 'Advanced Topics in AI for Products Innovation (with Lab)', 'crse_offer_nbr': '1'}, {'crse_id': '027567', 'ssr_crse_typoff_cd_lov_descr': 'Fall and/or Spring', 'course_title_long': 'Special Readings in AI for Product Innovation', 'crse_offer_nbr': '1'}]
+Output : ResponseFunctionToolCall(arguments='{"strm":"1940 - 2025 Fall Term","crse_id":"027570","crse_offer_nbr":"1"}', call_id='call_gtK2k3EYoWfKnzOozuaMqNhH', name='get_course_details', type='function_call', id='fc_67fb25e9b00c8191a463230e8210438004745e6c3c55c268', status='completed')
+Args :  {'strm': '1940 - 2025 Fall Term', 'crse_id': '027570', 'crse_offer_nbr': '1'}
+Traceback (most recent call last):
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/agent.py", line 63, in <module>
+    response = agent.run(query)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/agent.py", line 47, in run
+    result = Executor.execute_tool(name, args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/executor.py", line 16, in execute_tool
+    return cls.AVAILABLE_TOOLS.get(name)(**args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/tools/AIMengTools.py", line 128, in get_course_details
+    .get("ssr_descrlong")
+     ^^^
+AttributeError: 'list' object has no attribute 'get'
+
+=======================

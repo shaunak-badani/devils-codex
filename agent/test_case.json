@@ -120,7 +120,7 @@
       "evaluation_focus": ["Salutation", "Friendly tone"]
     },
     {
-      "query": "Can you remind me of the application requirements again?",
+      "query": "Can you remind me of the AIPI MEng application requirements?",
       "expected_tool": "AIMEngTools",
       "expected_info_keywords": ["application", "requirement", "deadline"],
       "evaluation_focus": ["Follow-up continuity"]
@@ -130,6 +130,174 @@
       "expected_tool": "ProspectiveStudentsTool",
       "expected_info_keywords": ["cost of living", "Durham", "housing"],
       "evaluation_focus": ["Follow-up tracking"]
+    },
+    {
+      "query": "Which AIPI courses are offered in the Spring 2025 term?",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["AIPI", "Spring 2025", "course offerings"],
+      "evaluation_focus": ["Term-specific filtering", "Data aggregation"]
+    },
+    {
+      "query": "Who teaches AIPI 510 in Fall 2025?",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["instructor", "AIPI 510", "Fall 2025"],
+      "evaluation_focus": ["Specific data extraction", "Course-instructor mapping"]
+    },
+    {
+      "query": "Compare the 12-month and 16-month AI MEng program options",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["12-month", "16-month", "difference", "comparison"],
+      "evaluation_focus": ["Comparative analysis", "Program structure understanding"]
+    },
+    {
+      "query": "What prerequisites are needed for AIPI 590?",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["prerequisites", "AIPI 590", "requirements"],
+      "evaluation_focus": ["Course detail extraction", "Educational pathway knowledge"]
+    },
+    {
+      "query": "How many credits is the AI MEng program?",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["credits", "curriculum", "graduation requirements"],
+      "evaluation_focus": ["Program requirement knowledge", "Numerical accuracy"]
+    },
+    {
+      "query": "What PhD FAQ answers mention funding opportunities?",
+      "expected_tool": "ProspectiveStudentsTool",
+      "expected_info_keywords": ["funding", "financial aid", "scholarship", "PhD"],
+      "evaluation_focus": ["Keyword search", "FAQ comprehension"]
+    },
+    {
+      "query": "How competitive is admission to the Duke PhD program?",
+      "expected_tool": "ProspectiveStudentsTool",
+      "expected_info_keywords": ["admission", "competitive", "acceptance rate", "PhD"],
+      "evaluation_focus": ["FAQ synthesis", "Complex information extraction"]
+    },
+    {
+      "query": "Are MS students eligible for on-campus housing?",
+      "expected_tool": "ProspectiveStudentsTool",
+      "expected_info_keywords": ["housing", "on-campus", "MS students", "eligibility"],
+      "evaluation_focus": ["Eligibility determination", "FAQ parsing"]
+    },
+    {
+      "query": "What GRE scores do successful MS applicants typically have?",
+      "expected_tool": "ProspectiveStudentsTool",
+      "expected_info_keywords": ["GRE", "scores", "MS", "application", "admission"],
+      "evaluation_focus": ["Statistical information extraction", "Admission criteria"]
+    },
+    {
+      "query": "Do Duke MS programs offer summer internship assistance?",
+      "expected_tool": "ProspectiveStudentsTool",
+      "expected_info_keywords": ["internship", "summer", "career services", "assistance"],
+      "evaluation_focus": ["Career support information", "Program benefits"]
+    },
+    {
+      "query": "Are there any artificial intelligence seminars this month?",
+      "expected_tool": "EventTools",
+      "expected_info_keywords": ["artificial intelligence", "seminar", "this month"],
+      "evaluation_focus": ["Category-time filtering", "Event relevance"]
+    },
+    {
+      "query": "List all Brown Bag events happening in the next two weeks",
+      "expected_tool": "EventTools",
+      "expected_info_keywords": ["Brown Bag", "next two weeks", "events"],
+      "evaluation_focus": ["Date range calculation", "Category specificity"]
+    },
+    {
+      "query": "When is the next Centennial celebration event?",
+      "expected_tool": "EventTools",
+      "expected_info_keywords": ["Centennial", "celebration", "next", "date"],
+      "evaluation_focus": ["Chronological ordering", "Event specificity"]
+    },
+    {
+      "query": "Are there any local charity events this weekend?",
+      "expected_tool": "EventTools",
+      "expected_info_keywords": ["charity", "weekend", "local", "fundraising"],
+      "evaluation_focus": ["Local filter application", "Weekend date recognition"]
+    },
+    {
+      "query": "What concerts are happening at Duke in May?",
+      "expected_tool": "EventTools",
+      "expected_info_keywords": ["concerts", "music", "May", "performance"],
+      "evaluation_focus": ["Future month planning", "Entertainment category"]
+    },
+    {
+      "query": "I'm interested in AI and music - are there any relevant courses or events?",
+      "expected_tool": ["AIMEngTools", "EventTools"],
+      "expected_info_keywords": ["AI", "music", "courses", "events", "intersection"],
+      "evaluation_focus": ["Cross-domain query handling", "Interest mapping"]
+    },
+    {
+      "query": "What are the research areas in the AI MEng program and are there related events?",
+      "expected_tool": ["AIMEngTools", "EventTools"],
+      "expected_info_keywords": ["research", "areas", "AI MEng", "events"],
+      "evaluation_focus": ["Academic-event correlation", "Research focus extraction"]
+    },
+    {
+      "query": "Do PhD students have teaching responsibilities and are there any teaching workshops?",
+      "expected_tool": ["ProspectiveStudentsTool", "EventTools"],
+      "expected_info_keywords": ["teaching", "responsibilities", "PhD", "workshops"],
+      "evaluation_focus": ["Duty-event correlation", "Multi-tool integration"]
+    },
+    {
+      "query": "What elective courses are available in the AI MEng program and how do they align with career paths?",
+      "expected_tool": ["AIMEngTools", "ProspectiveStudentsTool"],
+      "expected_info_keywords": ["electives", "AI MEng", "career", "paths"],
+      "evaluation_focus": ["Program-career alignment", "Educational planning"]
+    },
+    {
+      "query": "What kind of research collaborations exist between MS and PhD students?",
+      "expected_tool": ["AIMEngTools", "ProspectiveStudentsTool"],
+      "expected_info_keywords": ["research", "collaboration", "MS", "PhD", "students"],
+      "evaluation_focus": ["Cross-program knowledge", "Research environment"]
+    },
+    {
+      "query": "What programming languages are used in the AI MEng courses?",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["programming languages", "Python", "technical skills"],
+      "evaluation_focus": ["Technical detail extraction", "Curriculum details"]
+    },
+    {
+      "query": "How is the workload distributed throughout the AI MEng program?",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["workload", "course load", "distribution", "semesters"],
+      "evaluation_focus": ["Program structure analysis", "Educational planning"]
+    },
+    {
+      "query": "Are there student clubs related to AI at Duke?",
+      "expected_tool": ["ProspectiveStudentsTool", "EventTools"],
+      "expected_info_keywords": ["student clubs", "organizations", "AI", "extracurricular"],
+      "evaluation_focus": ["Community information", "Beyond-curriculum activities"]
+    },
+    {
+      "query": "Tell me about networking opportunities for AI MEng students",
+      "expected_tool": ["AIMEngTools", "EventTools"],
+      "expected_info_keywords": ["networking", "industry", "connections", "opportunities"],
+      "evaluation_focus": ["Career development information", "Professional growth"]
+    },
+    {
+      "query": "How does course registration work for AI MEng students?",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["registration", "course selection", "process", "timing"],
+      "evaluation_focus": ["Administrative process knowledge", "Procedural information"]
+    },
+    {
+      "query": "What computing resources are available to AI MEng students?",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["computing", "resources", "access", "technical infrastructure"],
+      "evaluation_focus": ["Technical support information", "Resource availability"]
+    },
+    {
+      "query": "How can I get involved in AI research as an MS student?",
+      "expected_tool": "ProspectiveStudentsTool",
+      "expected_info_keywords": ["research", "opportunities", "MS student", "involvement"],
+      "evaluation_focus": ["Research pathway knowledge", "Academic engagement"]
+    },
+    {
+      "query": "What's the difference between AIPI 540 and AIPI 545?",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["AIPI 540", "AIPI 545", "difference", "comparison"],
+      "evaluation_focus": ["Course comparison", "Curriculum navigation"]
     }
   ]
   
