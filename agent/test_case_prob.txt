@@ -1,0 +1,116 @@
+{
+      "query": "Are there any events at Duke on April 15?",
+      "expected_tool": "EventTools",
+      "expected_info_keywords": ["April 15", "event", "time"],
+      "evaluation_focus": ["Date parsing", "Tool routing"]
+    },
+    Traceback (most recent call last):
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/agent.py", line 63, in <module>
+    response = agent.run(query)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/agent.py", line 31, in run
+    response = self.client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/_utils/_utils.py", line 279, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/resources/responses/responses.py", line 603, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/_base_client.py", line 919, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/_base_client.py", line 1008, in _request
+    return self._retry_request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/_base_client.py", line 1057, in _retry_request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/_base_client.py", line 1008, in _request
+    return self._retry_request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/_base_client.py", line 1057, in _retry_request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/_base_client.py", line 1023, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'Request too large for gpt-4o in organization org-VqXbGtlc3KnF4Wudd0mmguUs on tokens per min (TPM): Limit 10000, Requested 36958. The input or output tokens must be reduced in order to run successfully. Visit https://platform.openai.com/account/rate-limits to learn more. You can increase your rate limit by adding a payment method to your account at https://platform.openai.com/account/billing.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}
+
+========================================
+
+You: What are some upcoming career fairs?
+Output : ResponseFunctionToolCall(arguments='{"categories":["Academic Calendar Dates"],"future_days":30,"local":true}', call_id='call_WbJenq3nCvMWZS4rAc2Hsbtw', name='get_events', type='function_call', id='fc_67fb2130e00c81919a60cde9da4011e30825ebc60fa12fe7', status='completed')
+Args :  {'categories': ['Academic Calendar Dates'], 'future_days': 30, 'local': True}
+Result :  [{'start': '2025-04-16T04:00:00Z', 'summary': 'Graduate classes end', 'location': 'None'}, {'start': '2025-04-17T04:00:00Z', 'summary': 'Graduate reading period', 'location': 'None'}, {'start': '2025-04-23T04:00:00Z', 'summary': ' Undergraduate classes and some graduate classes (500-699) end', 'location': 'None'}, {'start': '2025-04-24T04:00:00Z', 'summary': 'Undergraduate reading period', 'location': 'None'}, {'start': '2025-04-28T13:00:00Z', 'summary': ' Final examinations begin (9:00 AM)', 'location': 'None'}, {'start': '2025-05-04T02:00:00Z', 'summary': ' Final examinations end (10:00 PM)', 'location': 'None'}, {'start': '2025-05-09T04:00:00Z', 'summary': 'Commencement begins', 'location': 'None'}, {'start': '2025-05-11T04:00:00Z', 'summary': 'Graduation exercises; Conferring of degrees', 'location': 'None'}]
+Agent: I wasn't able to find any upcoming career fairs at Duke in the next month. If you need further assistance or have other queries, feel free to ask!
+
+========================================
+
+You: I want to apply to the AI MEng program. Are there any info sessions coming up?
+Output : ResponseFunctionToolCall(arguments='{"categories":["Artificial Intelligence"],"future_days":30,"local":true}', call_id='call_lrqZTHfX1xkv2uTcN6n2WJhp', name='get_events', type='function_call', id='fc_67fb2168803481919f827ab09facdc3c0825ebc60fa12fe7', status='completed')
+Args :  {'categories': ['Artificial Intelligence'], 'future_days': 30, 'local': True}
+Result :  [{'start': '2025-04-09T04:00:00Z', 'summary': 'Duke Three Minute Thesis Competition', 'location': 'Online'}, {'start': '2025-04-12T13:00:00Z', 'summary': 'India Conference at Duke', 'location': 'Gross Hall, Ahmadieh Family Auditorium, Room 107'}, {'start': '2025-04-15T16:00:00Z', 'summary': 'AI as a Thought Partner: Strategies to Foster Critical Inquiry', 'location': 'Virtual'}, {'start': '2025-04-24T14:00:00Z', 'summary': 'Diversifying Your Research Portfolio: Leveraging Foundation and Industry Partnerships', 'location': 'Zoom'}, {'start': '2025-04-24T17:30:00Z', 'summary': 'Duke Space Symposium', 'location': 'Sanford 223, Rhodes Conference Room'}, {'start': '2025-04-25T13:00:00Z', 'summary': 'Duke Space Symposium', 'location': 'Sanford 223, Rhodes Conference Room'}, {'start': '2025-04-25T16:00:00Z', 'summary': 'Co-Lab Wrapped', 'location': 'The TEC - Technology Engagement Center'}]
+Agent: I couldn't find any specific info sessions for the AI MEng program in the next 30 days. However, here are some related events that might be of interest:
+
+- **AI as a Thought Partner: Strategies to Foster Critical Inquiry**  
+  Date: April 15, 2025, at 16:00  
+  Location: Virtual
+
+- **Duke Three Minute Thesis Competition**  
+  Date: April 9, 2025  
+  Location: Online
+
+These events might provide valuable insights and networking opportunities within the broader AI community at Duke.
+
+================================
+
+You: What are the tuition fees for Yale's CS program?
+Agent: I don't have specific data on Yale's current CS program tuition fees. It's best to check Yale University's official website or contact their admissions office for the most accurate and updated information.
+You: Can you book a hotel near Duke for me?
+Agent: I can't assist with booking hotels, but I can suggest popular hotel options near Duke University:
+
+1. **Washington Duke Inn & Golf Club**
+2. **JB Duke Hotel**
+3. **Hilton Durham near Duke University**
+
+You can check their availability and prices on travel booking websites.
+You: What support is there for international students in the AI MEng program?
+Traceback (most recent call last):
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/agent.py", line 63, in <module>
+    response = agent.run(query)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/agent.py", line 31, in run
+    response = self.client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/_utils/_utils.py", line 279, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/resources/responses/responses.py", line 603, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/_base_client.py", line 919, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/_base_client.py", line 1008, in _request
+    return self._retry_request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/_base_client.py", line 1057, in _retry_request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/_base_client.py", line 1008, in _request
+    return self._retry_request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/_base_client.py", line 1057, in _retry_request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/openai/_base_client.py", line 1023, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VqXbGtlc3KnF4Wudd0mmguUs on requests per min (RPM): Limit 3, Used 3, Requested 1. Please try again in 20s. Visit https://platform.openai.com/account/rate-limits to learn more. You can increase your rate limit by adding a payment method to your account at https://platform.openai.com/account/billing.', 'type': 'requests', 'param': None, 'code': 'rate_limit_exceeded'}}
+
+
