@@ -19,6 +19,42 @@ class AIMEngTools:
     TOOLS_SCHEMA = [
         {
             "type": "function",
+            "name": "get_courses_list",
+            "description": "Gets the list of courses and details in the format \{ 'crse_id', 'crse_offer_nbr', 'course_title_long', 'fall_and_or_spring' \} for the AI MEng program",
+            "parameters": {}
+        }, 
+        {
+            "type": "function",
+            "name": "get_course_details",
+            "description": "Retrieves course details and instructor(s) for a given course.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "strm": {
+                        "type": "string",
+                        "enum": ALLOWED_STRM_VALUES,
+                        "description": f"The term in question : Fall, Spring, Summer 1 or Summer 2"
+                    },
+                    "crse_id": {
+                        "type": "string",
+                        "description": "Units the temperature will be returned in."
+                    },
+                    "crse_offer_nbr": {
+                        "type": "string",
+                        "description": "Course offering nbr of the course"
+                    }
+                },
+                "required": [
+                    "strm",
+                    "crse_id",
+                    "crse_offer_nbr"
+                ],
+                "additionalProperties": False
+            },
+            "strict": True
+        },
+        {
+            "type": "function",
             "name": "get_courses_list_alternate",
             "description": "Alternate API to get the list of courses for the AI MEng program. Only returns headers",
             "parameters": {}
@@ -208,13 +244,13 @@ class AIMEngTools:
         return TOOLS_MAP
 
 if __name__ == "__main__":
-    # response = AIMEngTools.get_courses_list()
+    response = AIMEngTools.get_courses_list()
     args = {
         "strm":"1940 - 2025 Fall Term",
         "crse_id":"027038",
         "crse_offer_nbr":"1"
     }
     # response = AIMEngTools.get_course_details(**args)
-    response = AIMEngTools.get_courses_list_alternate()
-    response = AIMEngTools.get_course_details_alternate("AIPI 520: Modeling Process & Algorithms")
+    # response = AIMEngTools.get_courses_list_alternate()
+    # response = AIMEngTools.get_course_details_alternate("AIPI 520: Modeling Process & Algorithms")
     print("Response obtained :", response)
