@@ -2,10 +2,12 @@ beautifulsoup4==4.13.3
 dotenv==0.9.9
 fastapi==0.115.12
 importlib-metadata==8.0.0
+inflect==7.3.1
 jaraco.collections==5.1.0
+lxml==5.3.2
 openai==1.72.0
-packaging==24.2
+pip-chill==1.0.3
 platformdirs==4.2.2
+pytest==8.3.5
 requests==2.32.3
-tomli==2.0.1
 uvicorn==0.34.0
