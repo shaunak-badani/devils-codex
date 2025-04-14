@@ -168,12 +168,6 @@
       "evaluation_focus": ["Keyword search", "FAQ comprehension"]
     },
     {
-      "query": "How competitive is admission to the Duke PhD program?",
-      "expected_tool": "ProspectiveStudentsTool",
-      "expected_info_keywords": ["admission", "competitive", "acceptance rate", "PhD"],
-      "evaluation_focus": ["FAQ synthesis", "Complex information extraction"]
-    },
-    {
       "query": "Are MS students eligible for on-campus housing?",
       "expected_tool": "ProspectiveStudentsTool",
       "expected_info_keywords": ["housing", "on-campus", "MS students", "eligibility"],
@@ -288,16 +282,22 @@
       "evaluation_focus": ["Technical support information", "Resource availability"]
     },
     {
-      "query": "How can I get involved in AI research as an MS student?",
-      "expected_tool": "ProspectiveStudentsTool",
-      "expected_info_keywords": ["research", "opportunities", "MS student", "involvement"],
-      "evaluation_focus": ["Research pathway knowledge", "Academic engagement"]
-    },
-    {
       "query": "What's the difference between AIPI 540 and AIPI 545?",
       "expected_tool": "AIMEngTools",
       "expected_info_keywords": ["AIPI 540", "AIPI 545", "difference", "comparison"],
       "evaluation_focus": ["Course comparison", "Curriculum navigation"]
+    },
+    {
+      "query": "Who is the instructor of Advanced AI course?",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["Advanced AI", "instructor"],
+      "evaluation_focus": ["Course-instructor mapping"]
+    },
+    {
+      "query": "what is the degree requirement of AIPI MEng program?",
+      "expected_tool": "AIMEngTools",
+      "expected_info_keywords": ["Advanced AI", "instructor"],
+      "evaluation_focus": ["Course-instructor mapping"]
     }
   ]
   

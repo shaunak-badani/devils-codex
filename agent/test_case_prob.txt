@@ -191,3 +191,59 @@ Traceback (most recent call last):
 AttributeError: 'list' object has no attribute 'get'
 
 =======================
+
+You: Who teaches AIPI 510 in Fall 2025?
+Output : ResponseFunctionToolCall(arguments='{}', call_id='call_4OLfSphGGiBERZFfV2q7Ogks', name='get_courses_list', type='function_call', id='fc_67fbc50a7b8881918410f749ae9e755a07223f5fe5ad4065', status='completed')
+Args :  {}
+Result :  []
+Agent: I couldn't find the course list for the AI MEng program. Could you please provide the course ID or any additional information you have on AIPI 510?
+
+
+=======================
+You: hat prerequisites are needed for AIPI 590?
+Agent: I couldn't find the course details right now. You might want to check the official program page or course catalog for the most accurate information.
+
+=======================
+
+You: How many credits is the AI MEng program?
+**No related info**
+
+Output : ResponseFunctionToolCall(arguments='{}', call_id='call_ooal0YeaTDGXPJytqg3cLirP', name='get_degree_details', type='function_call', id='fc_67fbc545a35c8191ab4035b7a5ea955007223f5fe5ad4065', status='completed')
+Args :  {}
+Result :  Flexibility and Options
+12 or 16 month on-campus or 24 months online
+Innovative and immersive, you can complete this Duke master’s degree in 12 or 16 months on-campus, or online part-time in just 24 months.
+12-Month Accelerated Option
+Significantly more affordable than a traditional master’s program—in this option, pay tuition for only two (2) full semesters plus three (3) summer session credits.
+16-Month Standard Track
+Pursue this degree over three (3) full semesters plus the summer session—allowing you time to take additional electives and specialize. Students pursuing this path may take a partial or whole load of courses during their final semester.
+4+1: BSE + Master’s Option for Duke Undergraduates
+Duke undergraduate students can complete undergrad and this master’s degree in just five (5) years.
+Scholarship opportunity: The AI 4+1 BSE+Master’s scholarship covers 20 percent of the costs. Eligibility and other conditions apply.
+MD + MEng in Artificial Intelligence Dual Degree
+Medical students at Duke can complete this degree during their third year. See School of Medicine bulletin for details.
+Scholarship opportunity: The MD+MEng AI scholarship covers 20 percent of the costs. Eligibility and other conditions apply.
+Agent: The AI MEng program at Duke can be completed on campus in 12 or 16 months, or online part-time in 24 months. You can pay tuition for two full semesters plus three summer session credits for the 12-month accelerated option, or take three full semesters plus a summer session for the 16-month standard track.
+
+======================
+
+You: What prerequisites are needed for AIPI 590?
+Output : ResponseFunctionToolCall(arguments='{"strm":"1940 - 2025 Fall Term","crse_id":"AIPI","crse_offer_nbr":"590"}', call_id='call_KHBxz3UsFB5QBzHsOF4JCWIT', name='get_course_details', type='function_call', id='fc_67fc5d97b86c8191aef746da91a221410ea1dc7acb279779', status='completed')
+Args :  {'strm': '1940 - 2025 Fall Term', 'crse_id': 'AIPI', 'crse_offer_nbr': '590'}
+Traceback (most recent call last):
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/agent.py", line 72, in <module>
+    response = agent.run(query)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/agent.py", line 56, in run
+    result = Executor.execute_tool(name, args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/executor.py", line 16, in execute_tool
+    return cls.AVAILABLE_TOOLS.get(name)(**args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/tools/AIMengTools.py", line 152, in get_course_details
+    .get("subject", {}) \
+     ^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+
+========
+
