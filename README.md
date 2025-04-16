@@ -2,6 +2,8 @@
 
 > A chatbot that helps answer questions regarding Duke curriculums and events.
 
+#### Website Link: https://devils-codex.azurewebsites.net/
+#### Team Member: Shaunak Badani & Roxanne Wang
 
 ### How to run
 
