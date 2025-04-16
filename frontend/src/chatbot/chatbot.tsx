@@ -40,6 +40,14 @@ const Chatbot = () => {
         setQuery("");
     } 
 
+    const handleKeyDown = (event: any) => {
+        if (event.key === 'Enter') {
+            console.log('Enter key pressed');
+            event.preventDefault();
+            handlePromptInput(query);
+        }
+      };
+
     return (
         <>
             <Messages 
@@ -51,6 +59,7 @@ const Chatbot = () => {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="What programs are offered at Duke?"
+                    onKeyDown={handleKeyDown}
                 />
                 <Button onClick={() => handlePromptInput(query)} className="h-12">
                     <Send size={30} />

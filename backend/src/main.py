@@ -1,12 +1,17 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+import os
+import sys
 
 app = FastAPI(root_path='/api')
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'agent'))
+sys.path.append(PROJECT_ROOT)
+from agent import DukeAgent
 
 # list of allowed origins
 origins = [
     "http://localhost:5173",
-    "http://vcm-45508.vm.duke.edu"
+    "http://vcm-47087.vm.duke.edu"
 ]
 
 app.add_middleware(
@@ -22,11 +27,14 @@ async def root():
     return {"message": "Hello world!"}
 
 @app.get("/chat")
-def query_mean_model(query: str):
+def query_agent(query: str):
     """
     Query endpoint for the chatbot model
+    Passes the query to the agent and returns the response
     """
-    # Pass query to some function
-    answer = f"I am a chatbot, still a work in progress!"
-    # answer = f(query) 
-    return {"answer": answer}
+    agent = DukeAgent()
+    try:
+        response_dictionary = agent.run(query)
+        return response_dictionary
+    except RuntimeError as e:
+        raise HTTPException(status_code = 500, detail = str(e))

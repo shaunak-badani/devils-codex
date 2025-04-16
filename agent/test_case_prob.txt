@@ -1,0 +1,91 @@
+You: What are some upcoming career fairs?
+Output : ResponseFunctionToolCall(arguments='{"categories":["Academic Calendar Dates"],"future_days":30,"local":true}', call_id='call_WbJenq3nCvMWZS4rAc2Hsbtw', name='get_events', type='function_call', id='fc_67fb2130e00c81919a60cde9da4011e30825ebc60fa12fe7', status='completed')
+Args :  {'categories': ['Academic Calendar Dates'], 'future_days': 30, 'local': True}
+Result :  [{'start': '2025-04-16T04:00:00Z', 'summary': 'Graduate classes end', 'location': 'None'}, {'start': '2025-04-17T04:00:00Z', 'summary': 'Graduate reading period', 'location': 'None'}, {'start': '2025-04-23T04:00:00Z', 'summary': ' Undergraduate classes and some graduate classes (500-699) end', 'location': 'None'}, {'start': '2025-04-24T04:00:00Z', 'summary': 'Undergraduate reading period', 'location': 'None'}, {'start': '2025-04-28T13:00:00Z', 'summary': ' Final examinations begin (9:00 AM)', 'location': 'None'}, {'start': '2025-05-04T02:00:00Z', 'summary': ' Final examinations end (10:00 PM)', 'location': 'None'}, {'start': '2025-05-09T04:00:00Z', 'summary': 'Commencement begins', 'location': 'None'}, {'start': '2025-05-11T04:00:00Z', 'summary': 'Graduation exercises; Conferring of degrees', 'location': 'None'}]
+Agent: I wasn't able to find any upcoming career fairs at Duke in the next month. If you need further assistance or have other queries, feel free to ask!
+
+========================================
+
+You: I want to apply to the AI MEng program. Are there any info sessions coming up?
+Output : ResponseFunctionToolCall(arguments='{"categories":["Artificial Intelligence"],"future_days":30,"local":true}', call_id='call_lrqZTHfX1xkv2uTcN6n2WJhp', name='get_events', type='function_call', id='fc_67fb2168803481919f827ab09facdc3c0825ebc60fa12fe7', status='completed')
+Args :  {'categories': ['Artificial Intelligence'], 'future_days': 30, 'local': True}
+Result :  [{'start': '2025-04-09T04:00:00Z', 'summary': 'Duke Three Minute Thesis Competition', 'location': 'Online'}, {'start': '2025-04-12T13:00:00Z', 'summary': 'India Conference at Duke', 'location': 'Gross Hall, Ahmadieh Family Auditorium, Room 107'}, {'start': '2025-04-15T16:00:00Z', 'summary': 'AI as a Thought Partner: Strategies to Foster Critical Inquiry', 'location': 'Virtual'}, {'start': '2025-04-24T14:00:00Z', 'summary': 'Diversifying Your Research Portfolio: Leveraging Foundation and Industry Partnerships', 'location': 'Zoom'}, {'start': '2025-04-24T17:30:00Z', 'summary': 'Duke Space Symposium', 'location': 'Sanford 223, Rhodes Conference Room'}, {'start': '2025-04-25T13:00:00Z', 'summary': 'Duke Space Symposium', 'location': 'Sanford 223, Rhodes Conference Room'}, {'start': '2025-04-25T16:00:00Z', 'summary': 'Co-Lab Wrapped', 'location': 'The TEC - Technology Engagement Center'}]
+Agent: I couldn't find any specific info sessions for the AI MEng program in the next 30 days. However, here are some related events that might be of interest:
+
+- **AI as a Thought Partner: Strategies to Foster Critical Inquiry**  
+  Date: April 15, 2025, at 16:00  
+  Location: Virtual
+
+- **Duke Three Minute Thesis Competition**  
+  Date: April 9, 2025  
+  Location: Online
+
+These events might provide valuable insights and networking opportunities within the broader AI community at Duke.
+
+===========================
+
+You: Who teaches AIPI 510 in Fall 2025?
+Output : ResponseFunctionToolCall(arguments='{"strm":"1940 - 2025 Fall Term","crse_id":"027041","crse_offer_nbr":"1"}', call_id='call_mi4WsGzIWixLbmOTP76Xc8wC', name='get_course_details', type='function_call', id='fc_67fb25ac89b481919fbf9dad6efd239d0cdef844b49c56e5', status='completed')
+Args :  {'strm': '1940 - 2025 Fall Term', 'crse_id': '027041', 'crse_offer_nbr': '1'}
+Traceback (most recent call last):
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/agent.py", line 63, in <module>
+    response = agent.run(query)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/agent.py", line 47, in run
+    result = Executor.execute_tool(name, args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/executor.py", line 16, in execute_tool
+    return cls.AVAILABLE_TOOLS.get(name)(**args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/tools/AIMengTools.py", line 125, in get_course_details
+    .get("subject", {}) \
+     ^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+
+===========================================
+
+You: What prerequisites are needed for AIPI 590?
+Output : ResponseFunctionToolCall(arguments='{}', call_id='call_DH5gUIj50OJoMaYyoNGHV1Hm', name='get_courses_list', type='function_call', id='fc_67fb25e28320819186f784673e2e481604745e6c3c55c268', status='completed')
+Args :  {}
+Result :  [{'crse_id': '027568', 'ssr_crse_typoff_cd_lov_descr': 'Fall and/or Spring', 'course_title_long': 'AIPI Seminar', 'crse_offer_nbr': '1'}, {'crse_id': '027569', 'ssr_crse_typoff_cd_lov_descr': 'Fall and/or Spring', 'course_title_long': 'AIPI Workshops', 'crse_offer_nbr': '1'}, {'crse_id': '027560', 'ssr_crse_typoff_cd_lov_descr': 'Occasionally', 'course_title_long': 'Python Bootcamp', 'crse_offer_nbr': '1'}, {'crse_id': '027566', 'ssr_crse_typoff_cd_lov_descr': 'Fall Only', 'course_title_long': 'Introductory Residency', 'crse_offer_nbr': '1'}, {'crse_id': '027565', 'ssr_crse_typoff_cd_lov_descr': None, 'course_title_long': 'Mid-Program Residency', 'crse_offer_nbr': '1'}, {'crse_id': '027564', 'ssr_crse_typoff_cd_lov_descr': 'Occasionally', 'course_title_long': 'Concluding Residency', 'crse_offer_nbr': '1'}, {'crse_id': '027038', 'ssr_crse_typoff_cd_lov_descr': 'Fall Only', 'course_title_long': 'Sourcing Data for Analytics', 'crse_offer_nbr': '1'}, {'crse_id': '027039', 'ssr_crse_typoff_cd_lov_descr': 'Fall and/or Spring', 'course_title_long': 'Modeling Process and Algorithms', 'crse_offer_nbr': '1'}, {'crse_id': '027040', 'ssr_crse_typoff_cd_lov_descr': 'Fall Only', 'course_title_long': 'Optimization in Practice', 'crse_offer_nbr': '1'}, {'crse_id': '028750', 'ssr_crse_typoff_cd_lov_descr': 'Fall Only', 'course_title_long': 'Deep Reinforcement Learning Applications', 'crse_offer_nbr': '1'}, {'crse_id': '027041', 'ssr_crse_typoff_cd_lov_descr': 'Spring Only', 'course_title_long': 'Deep Learning Applications', 'crse_offer_nbr': '1'}, {'crse_id': '027563', 'ssr_crse_typoff_cd_lov_descr': 'Spring Only', 'course_title_long': 'Capstone Practicum 1', 'crse_offer_nbr': '1'}, {'crse_id': '027042', 'ssr_crse_typoff_cd_lov_descr': 'Summer Only', 'course_title_long': 'Legal, Societal, and Ethical Implications of AI', 'crse_offer_nbr': '1'}, {'crse_id': '027042', 'ssr_crse_typoff_cd_lov_descr': 'Summer Only', 'course_title_long': 'Legal, Societal, and Ethical Implications of AI', 'crse_offer_nbr': '1'}, {'crse_id': '027043', 'ssr_crse_typoff_cd_lov_descr': 'Summer Only', 'course_title_long': 'Operationalizing AI', 'crse_offer_nbr': '1'}, {'crse_id': '027570', 'ssr_crse_typoff_cd_lov_descr': 'Fall and/or Spring', 'course_title_long': 'Advanced Topics in AI for Product Innovation', 'crse_offer_nbr': '1'}, {'crse_id': '027571', 'ssr_crse_typoff_cd_lov_descr': 'Fall and/or Spring', 'course_title_long': 'Advanced Topics in AI for Products Innovation (with Lab)', 'crse_offer_nbr': '1'}, {'crse_id': '027567', 'ssr_crse_typoff_cd_lov_descr': 'Fall and/or Spring', 'course_title_long': 'Special Readings in AI for Product Innovation', 'crse_offer_nbr': '1'}]
+Output : ResponseFunctionToolCall(arguments='{"strm":"1940 - 2025 Fall Term","crse_id":"027570","crse_offer_nbr":"1"}', call_id='call_gtK2k3EYoWfKnzOozuaMqNhH', name='get_course_details', type='function_call', id='fc_67fb25e9b00c8191a463230e8210438004745e6c3c55c268', status='completed')
+Args :  {'strm': '1940 - 2025 Fall Term', 'crse_id': '027570', 'crse_offer_nbr': '1'}
+Traceback (most recent call last):
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/agent.py", line 63, in <module>
+    response = agent.run(query)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/agent.py", line 47, in run
+    result = Executor.execute_tool(name, args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/executor.py", line 16, in execute_tool
+    return cls.AVAILABLE_TOOLS.get(name)(**args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/tools/AIMengTools.py", line 128, in get_course_details
+    .get("ssr_descrlong")
+     ^^^
+AttributeError: 'list' object has no attribute 'get'
+
+=======================
+You: what prerequisites are needed for AIPI 590?
+Agent: I couldn't find the course details right now. You might want to check the official program page or course catalog for the most accurate information.
+
+======================
+
+You: What prerequisites are needed for AIPI 590?
+Output : ResponseFunctionToolCall(arguments='{"strm":"1940 - 2025 Fall Term","crse_id":"AIPI","crse_offer_nbr":"590"}', call_id='call_KHBxz3UsFB5QBzHsOF4JCWIT', name='get_course_details', type='function_call', id='fc_67fc5d97b86c8191aef746da91a221410ea1dc7acb279779', status='completed')
+Args :  {'strm': '1940 - 2025 Fall Term', 'crse_id': 'AIPI', 'crse_offer_nbr': '590'}
+Traceback (most recent call last):
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/agent.py", line 72, in <module>
+    response = agent.run(query)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/agent.py", line 56, in run
+    result = Executor.execute_tool(name, args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/executor.py", line 16, in execute_tool
+    return cls.AVAILABLE_TOOLS.get(name)(**args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruoxinwang/Desktop/Duke/Large_Language_Models/project-2-devils-codex/agent/tools/AIMengTools.py", line 152, in get_course_details
+    .get("subject", {}) \
+     ^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+
