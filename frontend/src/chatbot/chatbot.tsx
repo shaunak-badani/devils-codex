@@ -5,6 +5,7 @@ import backendClient from "@/backendClient";
 import { Input } from "@/components/ui/input";
 import { Send } from "lucide-react";
 import Messages from "./messages";
+import SelectPrompt from "@/components/SelectPrompt";
 
 
 const Chatbot = () => {
@@ -65,6 +66,9 @@ const Chatbot = () => {
                     <Send size={30} />
                 </Button>
             </div>
+            <SelectPrompt 
+                setPrompt={(query: string) => setQuery(query)}
+            />
             {isLoading && <BackdropWithSpinner />}
         </>
     )
